@@ -24,8 +24,6 @@ int get_flags(const char *format, int *n)
 		if (FLAGS_CH[j] == 0)
 			break;
 	}
-
 	*n = curr_n - 1;
-
 	return (flags);
 }
