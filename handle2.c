@@ -19,14 +19,14 @@ int print_pointer(va_list types, char buffer[],
 	char map_to[] = "0123456789abcdef";
 	void *addrs = va_arg(types, void *);
 
-	VACANT(width);
-	VACANT(size);
+	UNUSED(width);
+	UNUSED(size);
 
 	if (addrs == NULL)
 		return (write(1, "(nil)", 5));
 
 	buffer[BUFF_SIZE - 1] = '\0';
-	VACANT(precision);
+	UNUSED(precision);
 
 	num_addrs = (unsigned long)addrs;
 
@@ -68,10 +68,10 @@ int print_non_printable(va_list types, char buffer[],
 	int p = 0, offset = 0;
 	char *str = va_arg(types, char *);
 
-	VACANT(flags);
-	VACANT(width);
-	VACANT(precision);
-	VACANT(size);
+	UNUSED(flags);
+	UNUSED(width);
+	UNUSED(precision);
+	UNUSED(size);
 
 	if (str == NULL)
 		return (write(1, "(null)", 6));
@@ -108,16 +108,16 @@ int print_reverse(va_list types, char buffer[],
 	char *str;
 	int p, count = 0;
 
-	VACANT(buffer);
-	VACANT(flags);
-	VACANT(width);
-	VACANT(size);
+	UNUSED(buffer);
+	UNUSED(flags);
+	UNUSED(width);
+	UNUSED(size);
 
 	str = va_arg(types, char *);
 
 	if (str == NULL)
 	{
-		VACANT(precision);
+		UNUSED(precision);
 
 		str = ")Null(";
 	}
@@ -126,7 +126,7 @@ int print_reverse(va_list types, char buffer[],
 
 	for (p = p - 1; p >= 0; p--)
 	{
-		char v = str[p];
+		char z = str[p];
 
 		write(1, &z, 1);
 		count++;
@@ -155,11 +155,11 @@ int print_rot13string(va_list types, char buffer[],
 	char out[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
 
 	str = va_arg(types, char *);
-	VACANT(buffer);
-	VACANT(flags);
-	VACANT(width);
-	VACANT(precision);
-	VACANT(size);
+	UNUSED(buffer);
+	UNUSED(flags);
+	UNUSED(width);
+	UNUSED(precision);
+	UNUSED(size);
 
 	if (str == NULL)
 		str = "(AHYY)";
@@ -169,8 +169,8 @@ int print_rot13string(va_list types, char buffer[],
 		{
 			if (in[d] == str[p])
 			{
-				x = out[d];
-				write(1, &x, 1);
+				a = out[d];
+				write(1, &a, 1);
 				count++;
 				break;
 			}

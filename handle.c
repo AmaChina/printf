@@ -34,11 +34,11 @@ int print_string(va_list types, char buffer[],
 	int length = 0, p;
 	char *str = va_arg(types, char *);
 
-	VACANT(buffer);
-	VACANT(flags);
-	VACANT(width);
-	VACANT(precision);
-	VACANT(size);
+	UNUSED(buffer);
+	UNUSED(flags);
+	UNUSED(width);
+	UNUSED(precision);
+	UNUSED(size);
 	if (str == NULL)
 	{
 		str = "(null)";
@@ -86,12 +86,12 @@ int print_string(va_list types, char buffer[],
 int print_percent(va_list types, char buffer[],
 	int flags, int width, int precision, int size)
 {
-	VACANT(types);
-	VACANT(buffer);
-	VACANT(flags);
-	VACANT(width);
-	VACANT(precision);
-	VACANT(size);
+	UNUSED(types);
+	UNUSED(buffer);
+	UNUSED(flags);
+	UNUSED(width);
+	UNUSED(precision);
+	UNUSED(size);
 	return (write(1, "%%", 1));
 }
 
@@ -108,7 +108,7 @@ int print_percent(va_list types, char buffer[],
 int print_int(va_list types, char buffer[],
 	int flags, int width, int precision, int size)
 {
-	int p = BUFF_SIZE - 2;
+	int n = BUFF_SIZE - 2;
 	int is_negative = 0;
 	long int h = va_arg(types, long int);
 	unsigned long int num;
@@ -116,26 +116,26 @@ int print_int(va_list types, char buffer[],
 	h = convert_size_number(h, size);
 
 	if (h == 0)
-		buffer[p--] = '0';
+		buffer[n--] = '0';
 
 	buffer[BUFF_SIZE - 1] = '\0';
 	num = (unsigned long int)n;
 
-	if (n < 0)
+	if (h < 0)
 	{
-		num = (unsigned long int)((-1) * n);
+		num = (unsigned long int)((-1) * h);
 		is_negative = 1;
 	}
 
 	while (num > 0)
 	{
-		buffer[p--] = (num % 10) + '0';
+		buffer[n--] = (num % 10) + '0';
 		num /= 10;
 	}
 
-	p++;
+	n++;
 
-	return (write_number(is_negative, p, buffer, flags, width, precision, size));
+	return (write_number(is_negative, n, buffer, flags, width, precision, size));
 }
 
 /**
@@ -155,26 +155,26 @@ int print_binary(va_list types, char buffer[],
 	unsigned int w[32];
 	int count;
 
-	VACANT(buffer);
-	VACANT(flags);
-	VACANT(width);
-	VACANT(precision);
-	VACANT(size);
+	UNUSED(buffer);
+	UNUSED(flags);
+	UNUSED(width);
+	UNUSED(precision);
+	UNUSED(size);
 
 	h = va_arg(types, unsigned int);
 	q = 2147483648; /* (2 ^ 31) */
-	a[0] = h / q;
+	w[0] = h / q;
 	for (p = 1; p < 32; p++)
 	{
 		q /= 2;
-		a[p] = (h / q) % 2;
+		w[p] = (h / q) % 2;
 	}
 	for (p = 0, sum = 0, count = 0; p < 32; p++)
 	{
-		sum += a[p];
+		sum += w[p];
 		if (sum || p == 31)
 		{
-			char b = '0' + a[p];
+			char b = '0' + w[p];
 
 			write(1, &b, 1);
 			count++;

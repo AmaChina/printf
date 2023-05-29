@@ -28,7 +28,7 @@ int flags, int width, int precision, int size)
 	{
 		buffer[BUFF_SIZE - 1] = '\0';
 		for (n = 0; n < width - 1; n++)
-			buffer[BUFF_SIZE - n - 2] = padd;
+			buffer[BUFF_SIZE - n - 2] = pad;
 
 		if (flags & F_MINUS)
 			return (write(1, &buffer[0], 1) +

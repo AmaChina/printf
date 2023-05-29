@@ -8,7 +8,7 @@
  */
 int get_precision(const char *format, int *n, va_list list)
 {
-	int curr_i = *n + 1;
+	int curr_n = *n + 1;
 	int precision = -1;
 
 	if (format[curr_n] != '.')
@@ -38,7 +38,6 @@ int get_precision(const char *format, int *n, va_list list)
 	return (precision);
 }
 
-vi get_size.c
 #include "main.h"
 /**
  * get_size - Computes size to cast  argument
