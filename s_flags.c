@@ -7,12 +7,10 @@
  */
 int get_flags(const char *format, int *n)
 {
-	/* - + 0 # ' ' */
-	/* 1 2 4 8  16 */
 	int j, curr_n;
 	int flags = 0;
-	const char FLAGS_CH[] = {'-', '+', '0', '#', ' ', '\0'};
-	const int FLAGS_ARR[] = {F_MINUS, F_PLUS, F_ZERO, F_HASH, F_SPACE, 0};
+	const char FLAGS_CH[] = {'+', '-', '0', ' ', '#', '\0'};
+	const int FLAGS_ARR[] = {F_PLUS, F_MINUS, F_ZERO, F_SPACE, F_HASH, 0};
 
 	for (curr_n = *n + 1; format[curr_n] != '\0'; curr_n++)
 	{
