@@ -8,24 +8,24 @@
  */
 int get_precision(const char *format, int *n, va_list list)
 {
-	int curr_n = *n + 1;
+	int new_n = *n + 1;
 	int precision = -1;
 
-	if (format[curr_n] != '.')
+	if (format[new_n] != '.')
 		return (precision);
 
 	precision = 0;
 
-	for (curr_n += 1; format[curr_n] != '\0'; curr_n++)
+	for (new_n += 1; format[new_n] != '\0'; new_n++)
 	{
-		if (is_digit(format[curr_n]))
+		if (is_digit(format[new_n]))
 		{
 			precision *= 10;
-			precision += format[curr_n] - '0';
+			precision += format[new_n] - '0';
 		}
-		else if (format[curr_n] == '*')
+		else if (format[new_n] == '*')
 		{
-			curr_n++;
+			new_n++;
 			precision = va_arg(list, int);
 			break;
 		}
@@ -33,32 +33,31 @@ int get_precision(const char *format, int *n, va_list list)
 			break;
 	}
 
-	*n = curr_n - 1;
-
+	*n = new_n - 1;
 	return (precision);
 }
 
 #include "main.h"
 /**
- * get_size - Computes size to cast  argument
+ * get_size - computes size to arguments
  * @format: Constructed string to inscribe arguments
- * @n: arguments list to be inscribed
+ * @n: argument list to be inscribed
  * Return: precision
  */
 int get_size(const char *format, int *n)
 {
-	int curr_n = *n + 1;
+	int new_n = *n + 1;
 	int size = 0;
 
-	if (format[curr_n] == 'l')
+	if (format[new_n] == 'l')
 		size = S_LONG;
-	else if (format[curr_n] == 'n')
+	else if (format[new_n] == 'n')
 		size = S_SHORT;
 
 	if (size == 0)
-		*n = curr_n - 1;
+		*n = new_n - 1;
 	else
-		*n = curr_n;
+		*n = new_n;
 
 	return (size);
 }
