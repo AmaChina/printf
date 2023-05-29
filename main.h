@@ -9,18 +9,18 @@
 #define BUFF_SIZE 1024
 
 /* FLAGS */
-#define F_MINUS 1
-#define F_PLUS 2
-#define F_ZERO 4
-#define F_HASH 8
 #define F_SPACE 16
+#define F_HASH 8
+#define F_ZERO 4
+#define F_PLUS 2
+#define F_MINUS 1
 
 /* SIZES */
-#define S_LONG 2
 #define S_SHORT 1
+#define S_LONG 2
 
 /**
- * struct form - struct op
+ * struct form - struct operation
  * @form: format
  * @fx: related function
  */
@@ -32,7 +32,7 @@ struct form
 
 
 /**
- * typedef struct form form_x - struct op
+ * typedef struct form form_x - struct operation
  * @form: format
  * @form_x: The related function
  */
@@ -40,7 +40,7 @@ typedef struct form form_x;
 
 int _printf(const char *format, ...);
 int handle_print(const char *form, int *n,
-va_list list, char buffer[], int flags, int width, int precision, int size);
+va_list list, char buffer[], int size, int width, int precision, int flags);
 
 /* Char and str functions */
 int print_char(va_list types, char buffer[],
@@ -95,9 +95,9 @@ int handle_write_char(char k, char buffer[],
 int write_number(int is_positive, int ind, char buffer[],
 	int flags, int width, int precision, int size);
 int write_num(int ind, char bff[], int flags, int width, int precision,
-	int length, char padd, char extra_c);
+	int length, char pad, char extra_c);
 int write_pointer(char buffer[], int ind, int length,
-	int width, int flags, char padd, char extra_c, int padd_start);
+	int width, int flags, char pad, char extra_c, int pad_start);
 
 int write_unsgnd(int is_negative, int ind,
 char buffer[],
