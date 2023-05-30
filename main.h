@@ -1,21 +1,20 @@
 #ifndef MAIN_H
 #define MAIN_H
-#include <stdarg.h>
-#include <stdlib.h>
-#include <stdio.h>
 #include <unistd.h>
+#include <stdio.h>
+#include <stdarg.h>
 
 #define UNUSED(x) (void)(x)
 #define BUFF_SIZE 1024
 
-/* FLAGS */
+/* FLAG */
 #define F_SPACE 16
 #define F_HASH 8
 #define F_ZERO 4
 #define F_PLUS 2
 #define F_MINUS 1
 
-/* SIZES */
+/* SIZE */
 #define S_SHORT 1
 #define S_LONG 2
 
@@ -75,7 +74,7 @@ int print_non_printable(va_list types, char buffer[],
 int print_pointer(va_list types, char buffer[],
 	int flags, int width, int precision, int size);
 
-/* Funciotns for other specs */
+/* Functions for other specs */
 int get_flags(const char *format, int *n);
 int get_width(const char *format, int *n, va_list list);
 int get_precision(const char *format, int *n, va_list list);
@@ -103,7 +102,7 @@ int write_unsgnd(int is_negative, int ind,
 char buffer[],
 	int flags, int width, int precision, int size);
 
-/* UTILS */
+/* UTILILITY */
 int is_printable(char);
 int append_hexa_code(char, char[], int);
 int is_digit(char);
